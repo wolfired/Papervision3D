@@ -1,0 +1,10 @@
+.lib
+.rsl
+.settings
+.vscode
+bin
+.actionScriptProperties
+.flexLibProperties
+.flexProperties
+.project
+asconfig.json

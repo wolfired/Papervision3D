@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+	<import file="build_util.xml" />
+
+	<target name="pre_custom">
+		<mkdir dir="${dir.lib}"/>
+		<mkdir dir="${dir.rsl}"/>
+		<mkdir dir="${dot.lib}"/>
+		<mkdir dir="${dot.rsl}"/>
+	</target>
+
+	<target name="pre_compile">
+		<loadfile property="depend.libs" srcfile="${basedir}/.dependlib" quiet="true" />
+		<if>
+			<isset property="depend.libs" />
+			<then>
+				<foreach target="copy_lib" list="${depend.libs}" delimiter="," param="depend.lib" trim="true" parallel="${config.parallel}" maxthreads="${config.maxthread}" inheritall="true" />
+			</then>
+		</if>
+
+		<loadfile property="depend.rsls" srcfile="${basedir}/.dependrsl" quiet="true" />
+		<if>
+			<isset property="depend.rsls" />
+			<then>
+				<foreach target="copy_rsl" list="${depend.rsls}" delimiter="," param="depend.rsl" trim="true" parallel="${config.parallel}" maxthreads="${config.maxthread}" inheritall="true" />
+			</then>
+		</if>
+	</target>
+
+	<target name="compile4ant" depends="pre_custom,custom,pre_compile">
+		<mxmlc file="${in.file}" output="${out.file}" debug="${config.debug}" debug-password="${config.debug.password}" optimize="${config.optimize}" incremental="false" locale="${config.locale}" target-player="${config.player.version}" swf-version="${config.swf.version}" accessible="true" static-rsls="true" fork="true">
+			<load-config filename="${config.flex_config.file}" />
+
+			<source-path path-element="${dir.src}" />
+
+			<external-library-path dir="${config.dir.playerglobal}" includes="**/*.swc" append="true" />	
+
+			<library-path dir="${dot.lib}" includes="**/*.swc" append="true" />
+			<library-path dir="${dir.lib}" includes="**/*.swc" append="true" />
+			<library-path dir="${config.dir.lib}" includes="**/*.swc" append="true" />
+			<external-library-path dir="${dot.rsl}/" includes="**/*.swc" append="true" />
+			<external-library-path dir="${dir.rsl}/" includes="**/*.swc" append="true" />
+			<external-library-path dir="${config.dir.rsl}/" includes="**/*.swc" append="true" />
+
+			<jvmarg line="${jvmarg.mxmlc}" />
+		</mxmlc>
+	</target>
+
+	<target name="compile4java" depends="pre_custom,custom,pre_compile">
+		<java jar="${FLEX_HOME}/lib/mxmlc.jar" fork="true">
+			<arg value="+flexlib" />
+			<arg value="${FLEX_HOME}/frameworks" />
+			<arg line="-load-config ${config.flex_config.file}" />
+			<arg line="-compiler.debug -compiler.incremental" />
+			<arg line="-compiler.as3 -compiler.optimize -compiler.strict -target-player ${config.player.version} -swf-version ${config.swf.version} -static-rsls" />
+			<arg line="-compiler.external-library-path ${config.dir.playerglobal}" />
+			<arg line="-compiler.library-path ${dot.lib} -compiler.library-path ${dir.lib} -compiler.library-path ${config.dir.lib}" />
+			<arg line="-compiler.external-library-path ${dot.rsl} -compiler.external-library-path ${dir.rsl} -compiler.external-library-path ${config.dir.rsl}" />
+			<arg line="-output ${out.file}" />
+			<arg line="-compiler.source-path ${dir.src}" />
+			<arg line="-- ${in.file}" />
+
+			<jvmarg line="${jvmarg.mxmlc}" />
+		</java>
+	</target>
+
+	<target name="build" depends="compile4ant">
+	</target>
+
+	<target name="deploy">
+		<antcall target="swfchef">
+			<param name="swf.file" value="${out.file}" />
+		</antcall>
+		<copy todir="${config.dir.bin}" verbose="${config.verbose}">
+			<fileset dir="${dir.bin}">
+				<exclude name="*.cache" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="wrapper">
+		<if>
+			<not>
+				<available file="${dir.bin}" type="dir"/>
+			</not>
+			<then>
+				<mkdir dir="${dir.bin}"/>
+			</then>
+		</if>
+		<html-wrapper output="${dir.bin}" file="${ant.project.name}.html" swf="${ant.project.name}" width="${config.width}" height="${config.height}" bgcolor="${config.bgcolor}" history="false" express-install="true" version-detection="false" version-major="${config.player.version-major}" version-minor="${config.player.version-minor}" wmode="${config.wmode}" version-revision="0" />
+	</target>
+
+	<target name="copy_lib">
+		<copy file="${config.dir.src}/${depend.lib}/bin/${config.compile.version}/${depend.lib}.swc" todir="${dot.lib}" />
+	</target>
+
+	<target name="copy_rsl">
+		<copy file="${config.dir.src}/${depend.rsl}/bin/${config.compile.version}/${depend.rsl}.swc" todir="${dot.rsl}" />
+	</target>
+</project>
