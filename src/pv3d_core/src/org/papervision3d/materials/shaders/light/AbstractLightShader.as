@@ -2,10 +2,10 @@ package org.papervision3d.materials.shaders.light {
 
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
-	import flash.display.SpreadMethod;
 	import flash.display.Sprite;
 	import flash.geom.Matrix;
 	import flash.utils.Dictionary;
+	
 	import org.papervision3d.core.geom.Triangle;
 	import org.papervision3d.materials.shaders.BasicShader;
 	import org.papervision3d.materials.textures.Texture;

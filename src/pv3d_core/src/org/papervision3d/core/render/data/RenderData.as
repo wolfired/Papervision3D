@@ -5,6 +5,10 @@ package org.papervision3d.core.render.data {
 	import org.papervision3d.objects.DisplayObject3D;
 	import org.papervision3d.view.Viewport3D;
 
+	/**
+	 * 渲染数据
+	 * @author LinkWu
+	 */	
 	public class RenderData {
 
 		public function RenderData() {
@@ -16,6 +20,7 @@ package org.papervision3d.core.render.data {
 		public var viewport:Viewport3D;
 		public var drawManager:IDrawManager;
 		public var stats:RenderStats;
+		/** 光源 */
 		public var lights:LightVector;
 	}
 }

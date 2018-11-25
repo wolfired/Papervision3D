@@ -6,7 +6,6 @@ package org.papervision3d.core.proto {
 
 	/**
 	 * Transform3D.
-	 * <p></p>
 	 *
 	 * @author Tim Knip / floorplanner.com
 	 */
@@ -33,13 +32,13 @@ package org.papervision3d.core.proto {
 			this.screenTransform = new Matrix3D();
 		}
 
-		/** */
+		/** 世界转换矩阵 */
 		public var worldTransform:Matrix3D;
 
-		/** */
+		/** 相机/视口转换矩阵 */
 		public var viewTransform:Matrix3D;
 
-		/** */
+		/** 屏幕转换矩阵 */
 		public var screenTransform:Matrix3D;
 
 		pv3d var scheduledLookAt:Transform3D;

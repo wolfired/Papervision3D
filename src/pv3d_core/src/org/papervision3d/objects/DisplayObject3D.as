@@ -7,8 +7,9 @@ package org.papervision3d.objects {
 	import org.papervision3d.materials.AbstractMaterial;
 
 	/**
-	 *
-	 */
+	 * 3D显示对象
+	 * @author LinkWu
+	 */	
 	public class DisplayObject3D extends DisplayObjectContainer3D {
 
 		/**

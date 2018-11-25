@@ -6,6 +6,10 @@ package org.papervision3d.objects.lights {
 	import flash.geom.Matrix;
 	import org.papervision3d.objects.DisplayObject3D;
 
+	/**
+	 * 点光源
+	 * @author LinkWu
+	 */
 	public class PointLight extends DisplayObject3D implements ILight {
 
 		public function PointLight(lightColor:uint = 0xAAAAAA, ambientColor:uint = 0x000000, specular:int = 0) {
@@ -45,7 +49,7 @@ package org.papervision3d.objects.lights {
 				var s:Sprite = new Sprite();
 				var m:Matrix = new Matrix();
 				m.createGradientBox(255, 3, 0, 0, 0);
-				//			s.graphics.beginGradientFill(GradientType.LINEAR, [ambientColor,lightColor],[1,1],[0,255],m);
+//				s.graphics.beginGradientFill(GradientType.LINEAR, [ambientColor,lightColor],[1,1],[0,255],m);
 				s.graphics.beginGradientFill(GradientType.LINEAR, [ambientColor, ambientColor, lightColor], [1, 1, 1], [0, specularLevel, 0xFF], m);
 				s.graphics.drawRect(0, 0, 255, 3);
 				s.graphics.endFill();

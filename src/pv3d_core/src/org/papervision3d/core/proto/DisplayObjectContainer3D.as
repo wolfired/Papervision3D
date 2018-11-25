@@ -6,6 +6,7 @@ package org.papervision3d.core.proto {
 	import org.papervision3d.objects.DisplayObject3D;
 
 	/**
+	 * 3D显示容器
 	 * @author Tim Knip / floorplanner.com
 	 */
 	public class DisplayObjectContainer3D {
@@ -15,7 +16,7 @@ package org.papervision3d.core.proto {
 		private static var _newID:int = 0;
 
 		/**
-		 *
+		 * @param name 容器名称
 		 */
 		public function DisplayObjectContainer3D(name:String = null) {
 			this.name = name || "Object" + (_newID++);
@@ -26,10 +27,10 @@ package org.papervision3d.core.proto {
 			_children = new Vector.<DisplayObject3D>();
 		}
 
-		/** */
+		/** 容器名称 */
 		public var name:String;
 
-		/** */
+		/** 父容器 */
 		public var parent:DisplayObjectContainer3D;
 
 		/** */

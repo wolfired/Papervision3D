@@ -15,6 +15,10 @@ package org.papervision3d.core.render.pipeline {
 	import org.papervision3d.objects.DisplayObject3D;
 	import org.papervision3d.objects.lights.ILight;
 
+	/**
+	 * 基础渲染管线
+	 * @author LinkWu
+	 */	
 	public class BasicPipeline implements IRenderPipeline {
 		use namespace pv3d;
 
@@ -100,6 +104,7 @@ package org.papervision3d.core.render.pipeline {
 			if(object.transform.scheduledLookAt) {
 				_lookAts.push(object);
 			}
+
 			transform.update();
 
 			wt.rawData = object.transform.matrix.rawData;

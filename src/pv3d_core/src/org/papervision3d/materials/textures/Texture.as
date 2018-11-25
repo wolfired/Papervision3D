@@ -6,10 +6,8 @@ package org.papervision3d.materials.textures {
 	public class Texture {
 
 		public function Texture(color:uint = 0x666666, alpha:Number = 1) {
-			trace(alpha);
 			this.color = color;
 			this.alpha = alpha;
-			trace(this.alpha);
 			TextureManager.addTexture(this);
 		}
 

@@ -3,7 +3,6 @@ package org.papervision3d.materials.shaders {
 	import flash.display.GraphicsEndFill;
 	import flash.display.GraphicsSolidFill;
 	import flash.display.IGraphicsData;
-	import org.papervision3d.materials.textures.Texture;
 
 	/**
 	 * @author: andy zupko / zupko.info

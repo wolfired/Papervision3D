@@ -54,7 +54,7 @@ package org.papervision3d.materials.shaders.light {
 
 				_lightMap = light.getGouraudMap();
 
-				var pos:Vector3D = lightMatrix.transformVector(light.transform.position);
+				var pos:Vector3D = lightMatrix.transformVector(light.transform.translation);
 
 				pos.normalize();
 

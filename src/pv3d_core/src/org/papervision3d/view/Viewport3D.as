@@ -5,12 +5,17 @@ package org.papervision3d.view {
 	import flash.geom.Rectangle;
 
 	/**
-	 *
-	 */
+	 * 视口类
+	 * @author LinkWu
+	 */	
 	public class Viewport3D extends Sprite {
-
 		/**
-		 *
+		 * @param viewportWidth 视口宽
+		 * @param viewportHeight 视口高
+		 * @param autoScaleToStage
+		 * @param interactive
+		 * @param autoClipping
+		 * @param autoCulling
 		 */
 		public function Viewport3D(viewportWidth:Number = 640, viewportHeight:Number = 480, autoScaleToStage:Boolean = false,
 								   interactive:Boolean = false, autoClipping:Boolean = true, autoCulling:Boolean = true) {

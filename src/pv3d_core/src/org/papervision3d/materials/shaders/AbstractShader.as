@@ -1,8 +1,8 @@
 package org.papervision3d.materials.shaders {
 
 	import flash.display.BitmapData;
-	import flash.display.Graphics;
 	import flash.display.IGraphicsData;
+	
 	import org.papervision3d.core.render.data.RenderData;
 	import org.papervision3d.core.render.draw.items.AbstractDrawable;
 	import org.papervision3d.materials.AbstractMaterial;
